@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.secret_key = 'mysecret'
 
 app.config['MONGO_DBNAME'] = 'userlogin'
-app.config['MONGO_URI'] = 'mongodb+srv://sangam:Workinflow1@userlogin.jzluw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+app.config['MONGO_URI'] = 'mongodb+srv://sangam:<password>1@userlogin.jzluw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 # Email Verification
 
@@ -16,8 +16,8 @@ mail = Mail(app)
 
 app.config["MAIL_SERVER"] = 'smtp.gmail.com'
 app.config["MAIL_PORT"] = 465
-app.config["MAIL_USERNAME"] = 'sagartiwari.bmp@gmail.com'   # you have to give your email app password
-app.config['MAIL_PASSWORD'] = 'exmdmxjpfcabldyk'
+app.config["MAIL_USERNAME"] = 'sagartiwari.bmp@gmail.com'   
+app.config['MAIL_PASSWORD'] = '**********'                #App password
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
@@ -47,9 +47,9 @@ mongo = PyMongo(app)
 @app.route('/')
 def index():
     if 'email' in session:
-        return render_template('dashboard.html')
+        return render_template('index.html')
 
-    return render_template('index.html')
+    return render_template('error.html')
 
 
 
@@ -67,7 +67,7 @@ def login():
             mail.send(msg)
             return render_template('verify.html')
 
-    return 'Invalid username/password combination'
+    return render_template('error.html')
 
 
 
@@ -76,7 +76,7 @@ def validate():
     user_otp = request.form['otp']
     if otp == int(user_otp) and recaptcha.verify():
         return render_template('dashboard.html')
-    return "<h3>Error Recaptcha or Invalid OTP</h3>"
+    return render_template('error.html')
 
 
 
