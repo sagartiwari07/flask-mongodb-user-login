@@ -5,10 +5,10 @@ from flask_recaptcha import ReCaptcha
 from random import randint
 
 app = Flask(__name__)
-app.secret_key = 'mysecret'
+app.secret_key = '####'
 
 app.config['MONGO_DBNAME'] = 'userlogin'
-app.config['MONGO_URI'] = 'mongodb+srv://sangam:Workinflow1@userlogin.jzluw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+app.config['MONGO_URI'] = 'mongodb+srv://user:#####@userlogin.jzluw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 # Email Verification
 
@@ -17,7 +17,7 @@ mail = Mail(app)
 app.config["MAIL_SERVER"] = 'smtp.gmail.com'
 app.config["MAIL_PORT"] = 465
 app.config["MAIL_USERNAME"] = 'sagartiwari.bmp@gmail.com'   # you have to give your email app password
-app.config['MAIL_PASSWORD'] = 'exmdmxjpfcabldyk'
+app.config['MAIL_PASSWORD'] = #####
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
